@@ -28,6 +28,7 @@ namespace Technology.gRPC
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<PersonService>();
 
                 endpoints.MapGet("/", async context =>
                 {

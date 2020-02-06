@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Technology.gRPC";
+
+package person;
+
+service Person {
+    rpc InsertPerson (PersonRequest) returns (PersonReply);
+}
+
+message PersonRequest {
+    string name = 1;
+    int32 age = 2;
+    string catName = 3;
+}
+
+message PersonReply {
+    string message = 1;
+}
