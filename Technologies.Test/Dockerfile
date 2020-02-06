@@ -6,9 +6,9 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["Technologies.Test/Technologies.Test.csproj", "Technologies.Test/"]
+COPY ["Technologies.Test.csproj", "Technologies.Test/"]
 RUN dotnet restore "Technologies.Test/Technologies.Test.csproj"
-COPY . .
+COPY . ./Technologies.Test
 WORKDIR "/src/Technologies.Test"
 RUN dotnet build "Technologies.Test.csproj" -c Release -o /app/build
 

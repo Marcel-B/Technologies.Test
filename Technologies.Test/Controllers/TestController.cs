@@ -16,7 +16,8 @@ namespace Technologies.Test.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            using var channel = GrpcChannel.ForAddress("http://grpc");
             var client = new Greeter.GreeterClient(channel);
             var reply = await client.SayHelloAsync(
                 new HelloRequest { Name = "GreeterClient" });
