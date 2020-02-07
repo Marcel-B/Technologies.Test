@@ -13,3 +13,7 @@ services:
     build: ./Technology.Api
     ports:
       - "5002:80"
+  blazor:
+    build: ./Technology.Blazor
+    ports:
+      - "5003:80"
