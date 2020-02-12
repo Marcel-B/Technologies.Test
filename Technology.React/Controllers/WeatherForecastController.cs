@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
 namespace Technology.React.Controllers
@@ -17,10 +18,14 @@ namespace Technology.React.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IHubContext<MessageHub> _hub;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(
+            ILogger<WeatherForecastController> logger,
+            IHubContext<MessageHub> hubcontext)
         {
             _logger = logger;
+            _hub = hubcontext;
         }
 
         [HttpGet]
@@ -35,5 +40,13 @@ namespace Technology.React.Controllers
             })
             .ToArray();
         }
+
+        [HttpPost()]
+        public async Task Post()
+        {
+            Console.WriteLine("Now send an message to all hubs");
+            await _hub.Clients.All.SendAsync("ReceiveMessage", "Hello", "Hamm");
+        }
+
     }
 }

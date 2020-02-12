@@ -18,6 +18,7 @@ namespace Technologies.Test.Controllers
         {
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
             using var channel = GrpcChannel.ForAddress("http://grpc");
+            //using var channel = GrpcChannel.ForAddress("https://grpc.qaybe.de");
             var client = new Greeter.GreeterClient(channel);
             var personClient = new Person.PersonClient(channel);
 

@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+    grpc:
+        image: millegalb/grpc:latest
+        networks:
+            - skynet
+        deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+
+    grpcapi:
+        image: millegalb/grpcapi:0.0.0
+        networks:
+            - skynet
+        deploy:
+            mode: replicated
+            replicas: 1
+            labels:
+                - "traefik.enable=true"
+                - "traefik.http.routers.grpcapi.rule=Host(`grpcapi.qaybe.de`)"
+                - "traefik.http.services.grpcapi.loadbalancer.server.port=80"
+                - "traefik.http.routers.grpcapi.entrypoints=websecure"
+                - "traefik.http.routers.grpcapi.tls.certresolver=sec"
+            restart_policy:
+                condition: on-failure
+
+    cache:
+        image: redis
+        deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+        networks:
+            - skynet
+        ports:
+            - "6379:6379"
+
+
+networks:
+    skynet:
+        external: true
