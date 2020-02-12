@@ -18,11 +18,16 @@ export class Counter extends Component {
     }
 
     componentDidMount() {
-        const mssg = window.prompt('Your name:', 'John');
-        console.log("Message: ", mssg);
+        //console.log("Hey, start here")
+        //const mssg = window.prompt('Your name:', 'John');
+        //console.log("Message: ", mssg);
         this.connection = new signalR.HubConnectionBuilder()
-            .withUrl("/messagehub")
+            .withUrl("http://locahost:5000/messagehub")
             .build();
+
+        console.log("Connection initiated");
+
+        console.log(this.connection);
 
         this.connection.on("ReceiveMessage", (username, message) => {
 
@@ -31,6 +36,7 @@ export class Counter extends Component {
                 currentCount: 42
             });
         });
+
     }
 
     render() {
