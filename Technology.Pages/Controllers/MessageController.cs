@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.SignalR;
 namespace Technology.Pages.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class MessageController : Controller
     {
         private IHubContext<MessageHub> _hubContext;
@@ -22,7 +23,7 @@ namespace Technology.Pages.Controllers
         }
         // GET: /<controller>/
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<IActionResult> Get()
         {
             Console.WriteLine("Now send an message to all hubs");
             await _hubContext.Clients.All.SendAsync("ReceiveMessage", "Hello", "Hamm");

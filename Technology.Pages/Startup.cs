@@ -25,6 +25,7 @@ namespace Technology.Pages
         {
             services.AddRazorPages();
             services.AddSignalR();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +53,7 @@ namespace Technology.Pages
             {
                 endpoints.MapRazorPages();
                 endpoints.MapHub<MessageHub>("/messagehub");
+                endpoints.MapControllers();
             });
         }
     }
