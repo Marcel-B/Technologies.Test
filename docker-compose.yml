@@ -1,19 +1,23 @@
 version: '3.7'
 
 services:
-  grpc:
-    build: ./Technology.gRPC
+  #grpc:
+    #build: ./Technology.gRPC
+    #ports:
+      #- "5001:80"
+  pages:
+    build: ./Technology.Pages
     ports:
-      - "5001:80"
-  react:
-    build: ./Technology.React
-    ports:
-      - "5000:80"
-  api:
-    build: ./Technology.Api
-    ports:
-      - "5002:80"
-  blazor:
-    build: ./Technology.Blazor
-    ports:
-      - "5003:80"
+      - "5004:80"
+  #react:
+    #build: ./Technology.React
+    #ports:
+      #- "5000:80"
+  #api:
+    #build: ./Technology.Api
+    #ports:
+      #- "5002:80"
+  #blazor:
+    #build: ./Technology.Blazor
+    #ports:
+      #- "5003:80"

@@ -28,7 +28,6 @@ namespace Technologies.Test.Controllers
             var reply = await client.SayHelloAsync(
                 new HelloRequest { Name = "GreeterClient", Age = 42 });
 
-
             return Ok(reply.Message + " " + personReply.Message);
         }
     }
