@@ -47,6 +47,5 @@ namespace Technology.React.Controllers
             Console.WriteLine("Now send an message to all hubs");
             await _hub.Clients.All.SendAsync("ReceiveMessage", "Hello", "Hamm");
         }
-
     }
 }

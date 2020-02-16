@@ -3,7 +3,6 @@ import * as signalR from '@aspnet/signalr';
 
 export class Counter extends Component {
     static displayName = Counter.name;
-    static connection;
 
     constructor(props) {
         super(props);
@@ -13,7 +12,8 @@ export class Counter extends Component {
 
     incrementCounter() {
         this.setState({
-            currentCount: this.state.currentCount + 1
+            currentCount: this.state.currentCount + 1,
+            connection = null
         });
     }
 
@@ -21,23 +21,21 @@ export class Counter extends Component {
         //console.log("Hey, start here")
         //const mssg = window.prompt('Your name:', 'John');
         //console.log("Message: ", mssg);
-        this.connection = new signalR.HubConnectionBuilder()
-            .withUrl("http://locahost:5000/messagehub")
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/messagehub")
             .build();
 
         console.log("Connection initiated");
 
-        console.log(this.connection);
 
-        this.connection.on("ReceiveMessage", (username, message) => {
+        this.setState({ connection });
 
-            console.log(`Hey ho, ${username} - ${message}`);
-            this.setState({
-                currentCount: 42
-            });
-        });
-
+        this.state.connection
+            .start()
+            .then(() => console.log('Connection started!'))
+            .catch(err => console.log('Error while establishing connection :('));
     }
+
 
     render() {
         return (

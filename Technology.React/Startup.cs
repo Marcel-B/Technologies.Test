@@ -22,7 +22,9 @@ namespace Technology.React
         {
             services.AddSignalR();
             services.AddControllersWithViews();
+
             // In production, the React files will be served from this directory
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
@@ -50,10 +52,6 @@ namespace Technology.React
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{controller}/{action=Index}/{id?}");
-
                 endpoints.MapHub<MessageHub>("/messagehub");
             });
 
