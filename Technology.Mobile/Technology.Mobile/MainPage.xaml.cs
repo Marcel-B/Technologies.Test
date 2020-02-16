@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Technology.Mobile.Services;
 using Technology.Mobile.ViewModels;
 using Xamarin.Forms;
 
@@ -22,10 +23,12 @@ namespace Technology.Mobile
 
         int cnt = 0;
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             if (sender is Button btn)
                 btn.Text = $"Clicked {++cnt} times";
+
+
         }
     }
 }

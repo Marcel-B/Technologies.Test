@@ -17,7 +17,7 @@
            VerticalOptions="CenterAndExpand" />
         <Label Text="{Binding Path=Name}"/>
         <Entry Text="{Binding Path=Name}" />
-        <Button Clicked="Button_Clicked" Text="Click me"/>
+        <Button Command="{Binding CallApi}" Text="Click me"/>
     </StackLayout>
 
 </ContentPage>
