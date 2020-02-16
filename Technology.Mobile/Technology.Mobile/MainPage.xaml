@@ -11,13 +11,24 @@
         <StackLayout.BindingContext>
             <local:TestViewModel/>
         </StackLayout.BindingContext>
+
         <!-- Place new controls here -->
         <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-        <Label Text="{Binding Path=Name}"/>
-        <Entry Text="{Binding Path=Name}" />
-        <Button Command="{Binding CallApi}" Text="Click me"/>
-    </StackLayout>
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+               Margin="4, 0, 4, 0"/>
 
+        <Label Text="{Binding Path=Name}"
+               Margin="4, 4, 4, 0"/>
+
+        <Entry Text="{Binding Path=Name}"
+               Margin="4, 4, 4, 0"/>
+
+        <Button Command="{Binding CallApi}" 
+                Text="Click me"
+                Margin="4, 4, 4, 0"/>
+
+        <ListView ItemsSource="{Binding Slipways}"/>
+    </StackLayout>
 </ContentPage>
+

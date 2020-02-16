@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Technology.Mobile.Services;
-using Technology.Mobile.ViewModels;
+﻿using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace Technology.Mobile
@@ -18,17 +11,6 @@ namespace Technology.Mobile
         public MainPage()
         {
             InitializeComponent();
-        }
-
-
-        int cnt = 0;
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            if (sender is Button btn)
-                btn.Text = $"Clicked {++cnt} times";
-
-
         }
     }
 }
