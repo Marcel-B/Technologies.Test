@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -38,17 +37,20 @@ namespace Technology.Mobile.ViewModels
             }
         }
 
-        public TestViewModel()
+        public TestViewModel(
+            ApiClient apiClient = null)
         {
-            var http = new ApiClient();
+            var client = apiClient ?? new ApiClient();
+
             CallApi = new Command(async () =>
             {
                 var cnt = 0;
-                var response = await http.GetData();
+                var response = await client.GetData();
                 var data = JsonConvert.DeserializeObject<ApiResult>(response);
                 Slipways = new List<string>();
                 Slipways = data.Data.Slipways.Select(_ => $"{++cnt} {_.Name}");
-            });
+            }, () => Slipways == null || Slipways.ToList().Count <= 0);
+
         }
     }
 }
